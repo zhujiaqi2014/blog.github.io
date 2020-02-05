@@ -59,7 +59,7 @@
 <meta property="og:image" content="https://hbctraining.github.io/In-depth-NGS-Data-Analysis-Course/sessionIV/img/bcbio-pipeline2.png">
 <meta property="og:image" content="https://us.v-cdn.net/5019796/uploads/editor/95/dimuaqc83ymt.png">
 <meta property="article:published_time" content="2020-02-04T06:29:27.000Z">
-<meta property="article:modified_time" content="2020-02-05T06:30:52.840Z">
+<meta property="article:modified_time" content="2020-02-05T09:17:08.845Z">
 <meta property="article:author" content="juhuaguai">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bcbio-nextgen.readthedocs.io/en/latest/_images/variant-calling-overview.png">
@@ -127,7 +127,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -141,12 +141,12 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Startseite</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archiv</a>
 
   </li>
   </ul>
@@ -196,16 +196,16 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
 
-              <time title="Created: 2020-02-04 14:29:27" itemprop="dateCreated datePublished" datetime="2020-02-04T14:29:27+08:00">2020-02-04</time>
+              <time title="Erstellt: 2020-02-04 14:29:27" itemprop="dateCreated datePublished" datetime="2020-02-04T14:29:27+08:00">2020-02-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-05 14:30:52" itemprop="dateModified" datetime="2020-02-05T14:30:52+08:00">2020-02-05</time>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2020-02-05 17:17:08" itemprop="dateModified" datetime="2020-02-05T17:17:08+08:00">2020-02-05</time>
               </span>
 
           
@@ -269,6 +269,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar cromwell.jar run hellowworld.wdl</span><br></pre></td></tr></table></figure>
 
 <p>官方推荐使用server模式，就是使用cromwell开一个服务，然后提交wdl。wdl的每个任务都被存在工作目录下，任务状态被存在数据库中。cromwell服务读取数据库得到任务状态，安排任务的执行顺序。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>上面4种生信解决方案，在功能和思考高度层层递进，从最简单计算的实现到整个业务流程系统。不同的任务需要灵活使用不同方案解决，才可以专注解决主要问题，提高效率。</p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://academic.oup.com/bib/article/18/3/530/2562749" target="_blank" rel="noopener">https://academic.oup.com/bib/article/18/3/530/2562749</a></p>
 <p><a href="https://bcbio-nextgen.readthedocs.io/en/latest/contents/introduction.html" target="_blank" rel="noopener">https://bcbio-nextgen.readthedocs.io/en/latest/contents/introduction.html</a> </p>
 <p><a href="https://github.com/openwdl/wdl/blob/master/versions/development/SPEC.md" target="_blank" rel="noopener">https://github.com/openwdl/wdl/blob/master/versions/development/SPEC.md</a> </p>
@@ -341,16 +342,16 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          Inhaltsverzeichnis
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          Übersicht
         </li>
       </ul>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scripts"><span class="nav-number">2.</span> <span class="nav-text">Scripts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Make"><span class="nav-number">3.</span> <span class="nav-text">Make</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Workflows"><span class="nav-number">4.</span> <span class="nav-text">Workflows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Frameworks"><span class="nav-number">5.</span> <span class="nav-text">Frameworks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WDL"><span class="nav-number">6.</span> <span class="nav-text">WDL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cromwell"><span class="nav-number">7.</span> <span class="nav-text">Cromwell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scripts"><span class="nav-number">2.</span> <span class="nav-text">Scripts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Make"><span class="nav-number">3.</span> <span class="nav-text">Make</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Workflows"><span class="nav-number">4.</span> <span class="nav-text">Workflows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Frameworks"><span class="nav-number">5.</span> <span class="nav-text">Frameworks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WDL"><span class="nav-number">6.</span> <span class="nav-text">WDL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cromwell"><span class="nav-number">7.</span> <span class="nav-text">Cromwell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -365,7 +366,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
   </nav>
@@ -396,10 +397,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">juhuaguai</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  <div class="theme-info">Design – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
   </div>
 
         
