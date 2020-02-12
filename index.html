@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ch">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -21,7 +21,7 @@
   var CONFIG = {
     hostname: new URL('http://zhujiaqi2014.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.7.1',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -50,8 +50,8 @@
 <meta property="og:title" content="bioinfo">
 <meta property="og:url" content="http://zhujiaqi2014.github.io/index.html">
 <meta property="og:site_name" content="bioinfo">
-<meta property="og:locale" content="ch">
-<meta property="article:author" content="juhuaguai">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="菊花怪">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://zhujiaqi2014.github.io/">
@@ -117,7 +117,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -129,14 +129,14 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-主页">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
 
   </li>
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
   </ul>
@@ -164,12 +164,78 @@
         
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ch">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="菊花怪">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bioinfo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/12/workflow-3/" class="post-title-link" itemprop="url">生物信息流程3-Cromwell</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-12 10:40:50 / 修改时间：18:59:38" itemprop="dateCreated datePublished" datetime="2020-02-12T10:40:50+08:00">2020-02-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>WDL+Cromwell一个负责生信流程的描述，一个负责执行。其实有很多特性是隐藏在了Cromwell中的，这样才能让使用者在写WDL的时候更专注生信分析，而不是背后的任务调度和计算。这里简单总结一下Cromwell中的特性和实现原理</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/12/workflow-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="juhuaguai">
+      <meta itemprop="name" content="菊花怪">
       <meta itemprop="description" content="">
     </span>
 
@@ -187,11 +253,17 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2020-02-11 17:48:57 / Modified: 18:18:10" itemprop="dateCreated datePublished" datetime="2020-02-11T17:48:57+08:00">2020-02-11</time>
+              <time title="创建时间：2020-02-11 17:48:57" itemprop="dateCreated datePublished" datetime="2020-02-11T17:48:57+08:00">2020-02-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-12 10:25:11" itemprop="dateModified" datetime="2020-02-12T10:25:11+08:00">2020-02-12</time>
+              </span>
 
           
 
@@ -204,83 +276,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>上一部分总结了生信流程的分类和对应解决的问题，后面主要讲一下frameworks里面的<strong>WDL+Cromwell</strong>方法。这一套方法是<strong>Broad  Institute</strong>在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌/亚马逊/微软/阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwell跑了47.5million以上的任务，各种奇葩情况应该大部分遇到过并且可以解决。</p>
-<p><strong>WDL</strong>和<strong>Cromwell</strong>是一起使用的工具，<strong>WDL</strong>是易读写的流程编写语言，适合方法开发人员和所有生物医学科学家。<strong>Cromwell</strong>是WDL的执行引擎有如下特征。<strong>这部分主要讲WDL，Cromwell只简单介绍一下</strong></p>
-<ul>
-<li><p>可以在多个平台上运行（HPC或Cloud）</p>
-</li>
-<li><p>根据需求可以无缝扩展</p>
-</li>
-<li><p>提供最大的灵活性</p>
-</li>
-</ul>
-<img src="/2020/02/11/workflow_2/cromwell-1.png" class="" title="cromwell-1">
-
-<h3 id="Frameworks分类"><a href="#Frameworks分类" class="headerlink" title="Frameworks分类"></a>Frameworks分类</h3><p>作为一种流程表达的语言，要弄清<strong>WDL</strong>的特点需要和其他<strong>类似语言</strong>对比，下面是几种分类方法</p>
-<ul>
-<li><p>显示/隐式语法</p>
-</li>
-<li><p>class/config/dsl范式</p>
-</li>
-<li><p>命令行/图形界面</p>
-</li>
-</ul>
-<img src="/2020/02/11/workflow_2/framworks-1.png" class="" title="framworks-1">
-
-
-
-<h3 id="显示-隐式语法"><a href="#显示-隐式语法" class="headerlink" title="显示/隐式语法"></a>显示/隐式语法</h3><p><strong>隐式语法</strong>是<strong>Make</strong>引入的，使用通配符的形式以减少make脚本的冗余，可以通过一个<code>Implicit Rule</code>表达相似操作。下面是流程语言<strong>Snakemake</strong>对隐式语法的应用，在文件Snakefile中是一个<code>Implicit Rule</code>。在执行snakemake命令的时候为了输出<code>mapped_reads/A.bam</code>和<code>mapped_reads/B.bam</code>，程序会自动根据<code>Implicit Rule</code>去对应路径下找<code>data/samples/A.fastq</code>和<code>data/samples/B.fastq</code>然后执行shell中的代码。整个流程多个任务的依赖关系由这些文件的后缀推出来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Snakefile</span><br><span class="line"></span><br><span class="line">rule bwa_map:</span><br><span class="line">    input:</span><br><span class="line">        &quot;data&#x2F;genome.fa&quot;,</span><br><span class="line">        &quot;data&#x2F;samples&#x2F;&#123;sample&#125;.fastq&quot;</span><br><span class="line">    output:</span><br><span class="line">        &quot;mapped_reads&#x2F;&#123;sample&#125;.bam&quot;</span><br><span class="line">    shell:</span><br><span class="line">        &quot;bwa mem &#123;input&#125; | samtools view -Sb - &gt; &#123;output&#125;&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snakemake -np mapped_reads&#x2F;&#123;A,B&#125;.bam</span><br></pre></td></tr></table></figure>
-
-<p>从上面可以看出<strong>隐式语法</strong>对文件名很关注，这也是make的应用场景导致的，在编译过程中不同的文件后缀有不同的处理方式。但是生信分析中更复杂的处理过程可能使用<strong>显式语法</strong>可能更合理一点。比如下面的流程语言<strong>Ruffus</strong>中下一步的输入是上一步的输出，而不是直接指定某个路径下的特定后缀文件。整个流程多个任务的依赖关系由这些输入输出的关系推出来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Ruffus</span><br><span class="line"></span><br><span class="line">@transform(input_fqs, suffix(fq_suffix), sam_suffix)</span><br><span class="line">@log_and_run</span><br><span class="line">def align_with_bwa(input_fqs, sam_file):</span><br><span class="line">    cmd &#x3D; &#39;bwa mem &#123;&#125; &#123;&#125; &gt; &#123;&#125;&#39;.format(ref_genome, input_fqs, sam_file)</span><br><span class="line">    return cmd</span><br><span class="line"></span><br><span class="line">@follows(align_with_bwa)</span><br></pre></td></tr></table></figure>
-
-<p><strong>WDL</strong>是一种显式语法，在后面的介绍中可以看出。这样的好处是从文件名中解放用户的精力，使其专注在流程上。</p>
-<h3 id="class-config-dsl范式"><a href="#class-config-dsl范式" class="headerlink" title="class/config/dsl范式"></a>class/config/dsl范式</h3><p>这种<strong>class-based</strong>的框架往往和已有语言紧密结合，比如GATK team在2011年使用WDL之前用的流程语言<strong>Queue</strong>就是一个建立在GATK和scala上的流程框架，因此有他的所有特性。新一点的Frameworks比如<strong>Toil</strong>是建立在python上的，写出来的流程同样有python所有特性。相比于dsl只能完成规定类型任务，class-based框架因为继承了编程语言的特性，操作粒度更细，可以完成一些特殊的操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># toil_example.py</span><br><span class="line"></span><br><span class="line">from toil.common import Toil</span><br><span class="line">from toil.job import Job</span><br><span class="line"></span><br><span class="line">def helloWorld(message, memory&#x3D;&quot;1G&quot;, cores&#x3D;1, disk&#x3D;&quot;1G&quot;):</span><br><span class="line">    return &quot;Hello, world!, here&#39;s a message: %s&quot; % message</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &quot;__main__&quot;:</span><br><span class="line">    parser &#x3D; Job.Runner.getDefaultArgumentParser()</span><br><span class="line">    options &#x3D; parser.parse_args()</span><br><span class="line">    options.clean &#x3D; &quot;always&quot;</span><br><span class="line">    with Toil(options) as toil:</span><br><span class="line">        output &#x3D; toil.start(Job.wrapFn(helloWorld, &quot;You did it!&quot;))</span><br><span class="line">    print(output)</span><br></pre></td></tr></table></figure>
-
-<p><strong>config-based</strong>框架的思想是使用<strong>配置文件描述任务</strong>，每个任务有一个config文件来描述任务中所有步骤的所有相关参数/输入/输出/程序。这种方式优势是重复性好，因为每个任务对应一个config文件包含了运行中所有信息。下面的<strong>Pegasus</strong>是一个开发来用于物理研究的框架，使用id来表达步骤间的依赖关系，任务所有信息全部存储在config文件里面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># pegasus_example.xml</span><br><span class="line"></span><br><span class="line">&lt;executable name&#x3D;&quot;align_ with_ bwa&quot; arch&#x3D;&quot;x86_ _64&quot; installed&#x3D;&quot;true&quot;&gt;</span><br><span class="line">    &lt;pfn url&#x3D;&quot;file:&#x2F;&#x2F;path to executables&#x2F;bwa&quot; site&#x3D;&quot;local&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;executable&gt;</span><br><span class="line">&lt;job id&#x3D;&quot;ID0000001&quot; name&#x3D;&quot;align_ with_ _bwa&quot;&gt;</span><br><span class="line">    &lt;argument&gt;mem -t 12 -M &lt;file name&#x3D;&quot;GRCh38.fa&quot;&#x2F;&gt; &lt;file name&#x3D;&quot;my_ sample_ 1.fq&quot;&#x2F;&gt; &lt;file name&#x3D;&quot;my_ sample_ 2. fq&quot;&#x2F;&gt;&lt;&#x2F;argument&gt;</span><br><span class="line">    &lt;profile namespace&#x3D;&quot;pegasus&quot; key&#x3D;&quot;label&quot;&gt;bwa&lt;&#x2F;profile&gt;</span><br><span class="line">    &lt;profile namespace&#x3D;&quot;condor&quot; key&#x3D;&quot; request_ cpus&quot;&gt;16&lt;&#x2F;profile&gt;</span><br><span class="line">    &lt;stdout name&#x3D;&quot;my_ sample. sam&quot; link&#x3D; &quot;output&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;GRCh38. fa. fai&quot; link&#x3D;&quot; input&quot; &#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;GRCh38. fa. bwt&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;GRCh38. fa&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;my_ sample_ 1. fq&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;my_ sample_ 2. fq&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;job&gt;</span><br><span class="line">&lt;child id&#x3D;&quot;I0000002&quot; ref&#x3D;&quot;my_ _sample_ sam2bam&quot;&gt;</span><br><span class="line">    &lt;parent ref&#x3D;&quot;ID0000001&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;child&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>‘domain-specific language’(DSL)</strong>框架是专门设计来做生信分析的，会自定义一些规则来帮助使用人员描述流程。刚才介绍的<strong>snakemake</strong>和我们今天讨论的<strong>WDL</strong>就是两种比较流行的DSL，好处是可以框架开发人员随需求定义特定的语言，引入特性，使用人员不用像<strong>class-based</strong>的框架一样学习绑定的复杂语言，也不用像<strong>config-based</strong>的框架一样每个任务都配置一大堆东西。</p>
-<h3 id="命令行-图形界面"><a href="#命令行-图形界面" class="headerlink" title="命令行/图形界面"></a>命令行/图形界面</h3><p>这两个区别就不用多说了，没有生信背景的研究者一般使用商业化的图形界面工具。如果有生信背景的还是使用命令行类型的更方便。下面<strong>Galaxy</strong>使用的图形界面，而<strong>WDL</strong>是属于命令行模式的。后面简单介绍一下WDL的基本结构</p>
-<img src="/2020/02/11/workflow_2/varcallgalaxy3.jpg" class="" title="varcallgalaxy3">
-
-
-
-<h3 id="WDL的基本结构"><a href="#WDL的基本结构" class="headerlink" title="WDL的基本结构"></a>WDL的基本结构</h3><p><strong>WDL</strong>由<code>task</code>和<code>workflow</code>组成，<code>task</code>是任务基本单元，包括4个部分，分别为</p>
-<ul>
-<li><p>input：就是任务的输入，可以是文件/字符串/数组/哈希/自定义格式</p>
-</li>
-<li><p>command：替换input到命令中形成scripts，是需要执行的命令</p>
-</li>
-<li><p>runtime：运行环境，如docker镜像，HPC的队列，内存，cpu，重复次数。或是自定义变量，这个可在cromwell中配置变量的使用方法</p>
-</li>
-<li><p>output：任务的输出，可以是各种类型，类似input</p>
-</li>
-</ul>
-<img src="/2020/02/11/workflow_2/wdl-1.png" class="" title="wdl-1-1">
-
-
-
-<h3 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h3><p><code>Workflow</code>是分析流程，整个流程可以由多个<code>task</code>或是多个<code>SubWorkflow</code>组成，并行/串行都有特定方法表示。<strong>显式</strong>的参数传递可以被自动识别出任务间的依赖关系。<strong>DSL-based</strong>的写法也挺优雅，没有多余的东西，可读性比其他方法好</p>
-<img src="/2020/02/11/workflow_2/wdl-2.png" class="" title="wdl-2">
-
-
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这里虽然主要介绍<strong>WDL</strong>，但是也对各种框架语言做了个分类，在使用的时候需要根据任务需要灵活使用不同方案解决，才可以专注解决主要问题，提高效率。不过WDL作为一个<strong>开发者靠谱，使用次数多，相关支持多</strong>的框架语言，用来解决大部分常规问题应该是很轻松的。相比于其他难用的框架语言，节约下来的时间和精力可以专注在业务数据的分析上，而不是一直修改<strong>bug</strong></p>
-<img src="/2020/02/11/workflow_2/bug-1.png" class="" title="bug-1">
-
-
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.ncbi.nlm.nih.gov/pubmed/27013646" target="_blank" rel="noopener">A review of bioinformatic pipeline frameworks</a></p>
-<p><a href="https://www.gnu.org/software/make/manual/make.html#Using-Implicit" target="_blank" rel="noopener">Make Document</a></p>
-<p><a href="https://www.broadinstitute.org/files/shared/mpg/nextgen2011/nextgen2011_shakir.pdf" target="_blank" rel="noopener">GATK-Queue</a></p>
-<p><a href="https://toil.readthedocs.io/en/latest/" target="_blank" rel="noopener">Toil Document</a></p>
-<p><a href="https://github.com/openwdl/wdl" target="_blank" rel="noopener">openwdl</a></p>
-
+          <p>上一部分总结了几类生信解决方案，从细节到宏观对应解决的问题。后面主要<strong>WDL+Cromwell</strong>方法为主，总结生信框架的分类和优缺点。这一套方法是<strong>Broad  Institute</strong>在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌/亚马逊/微软/阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwell跑了47.5million以上的任务，各种奇葩情况应该大部分遇到过并且可以解决。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/11/workflow_2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -298,12 +302,12 @@
         
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ch">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zhujiaqi2014.github.io/2020/02/04/workflow_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="juhuaguai">
+      <meta itemprop="name" content="菊花怪">
       <meta itemprop="description" content="">
     </span>
 
@@ -321,16 +325,16 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2020-02-04 14:29:27" itemprop="dateCreated datePublished" datetime="2020-02-04T14:29:27+08:00">2020-02-04</time>
+              <time title="创建时间：2020-02-04 14:29:27" itemprop="dateCreated datePublished" datetime="2020-02-04T14:29:27+08:00">2020-02-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-11 18:04:25" itemprop="dateModified" datetime="2020-02-11T18:04:25+08:00">2020-02-11</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-12 10:39:53" itemprop="dateModified" datetime="2020-02-12T10:39:53+08:00">2020-02-12</time>
               </span>
 
           
@@ -344,140 +348,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>生物信息分析常常涉及一系列数据处理，一般称做pipeline或者是workflow，由许多第三方软件组成。比如从NGS数据中做变异检测，有Alignment，Variant calling，Merge variants，Filter variants，Annotation等多个步骤。</p>
-<img src="/2020/02/04/workflow_1/variant-calling-overview.png" class="" title="Variant_calling_overview">
-
-<p>一个完整的分析过程常常包含上百个步骤，其中并行和串行，cpu和内存需求不同，在集群里每个节点或是云服务器的调度，这些需求要特定方法满足。</p>
-<img src="/2020/02/04/workflow_1/parallel-clustertypes.png" class="" title="parallel_execution">
-
-<p>几大类生信分析解决方案</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>scripts</td>
-<td>简单，但是只能完成少量的串行的步骤</td>
-</tr>
-<tr>
-<td>make</td>
-<td>Snakemake</td>
-</tr>
-<tr>
-<td>workflows</td>
-<td>bcbio-nextgen，Omics Pipe。常规流程，一般发文章用，但是扩展性差</td>
-</tr>
-<tr>
-<td>frameworks</td>
-<td>Cromwell，Nextflow，Toil。框架，可以添加任意流程</td>
-</tr>
-</tbody></table>
-<h3 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts"></a>Scripts</h3><p>Shell或者是perl脚本可以完成少量串行的分析。但是缺少了两个关键特性导致难以自动完成复杂的生信分析。dependencies和reentrancy，前一个特性可以通过每个步骤的依赖关系解决并行/串行的问题，后一个特性可以在任务暂停或是出错的时候从停止的地方开始分析，避免浪费时间从头开始。Scripts包括<a href="https://jupyter.org/" target="_blank" rel="noopener">jupyter</a>或是<a href="https://rmarkdown.rstudio.com/" target="_blank" rel="noopener">R markdown</a>一般在生信分析的开发时使用，用于<strong>探索性工作</strong>，可视化的结果记录可以帮助开发和调试还有分享代码。实际使用批量分析时需要后面的方法。</p>
-<img src="/2020/02/04/workflow_1/jupyterpreview.png" class="" title="jupyter">
-
-
-
-<h3 id="Make"><a href="#Make" class="headerlink" title="Make"></a>Make</h3><p><a href="https://en.wikipedia.org/wiki/Make_(software)" target="_blank" rel="noopener">Make</a>是为了自动化编译创造的 ‘domain-specific language’ (DSL) 。为了软件的自动编译，有dependencies和reentrancy两个特性。使用特定格式的语法可以表达步骤之间的依赖关系。但是make不是为了数据分析创造的，所以不支持集群计算，比如无法完成并行任务在多个节点的调度。后面的Snakemake继承了make的一些特性，并对生信计算有了更多支持</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REF:&#x3D;GRCh38.fa</span><br><span class="line"></span><br><span class="line">%.sam : %_1.fq %_2.fq</span><br><span class="line">    bwa mem $(REF) $^ &gt; $@</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Workflows"><a href="#Workflows" class="headerlink" title="Workflows"></a>Workflows</h3><p><a href="https://github.com/bcbio/bcbio-nextgen" target="_blank" rel="noopener">bcbio-nextgen</a>提供了很多主流生信分析的流程，可以在配置文件中选择，包含了主流的分析工具比如GATK，STAR等，并且大部分参数经过验证，比如cancer variant calling就经过了dream challenge的<a href="https://www.synapse.org/#!Synapse:syn312572/wiki/62018" target="_blank" rel="noopener">dataset</a>验证。也支持集群和云计算。如果用来做<strong>常规分析</strong>，发文章那么使用bcbio-nextgen是一个比较好的选择。但是相对应的来说由于支持流程多，就不能算轻量级工具，扩展性较差，比如有特定分析需求不好处理。</p>
-<img src="/2020/02/04/workflow_1/bcbio-pipeline2.png" class="" title="bcbio-nextgen">
-
-
-
-<h3 id="Frameworks"><a href="#Frameworks" class="headerlink" title="Frameworks"></a>Frameworks</h3><p>生信框架可以把workflow中重复的和分析无关的工作抽象出来，通过<strong>类</strong>或是<strong>语法</strong>和 <strong>解释器</strong> 解决，可以方便的创造出各种轻量级workflows通过特定的引擎解析可以转换成机器语言调度每个步骤，解决了上面bcbio大流程的笨重问题。在有一定时间投入的情况下，可以完全替换掉workflows。框架有DSL型比如wdl和cwl，也有基于python的toil，或者是基于config的Galaxy。</p>
-<p>这里主要说broad研究所的wdl+cromwell，wdl是专门做生信分析的语言，cromwell是对应的解释器。</p>
-<p> <img src="dimuaqc83ymt.png" alt="img"> </p>
-<h3 id="WDL"><a href="#WDL" class="headerlink" title="WDL"></a>WDL</h3><p>‘workflow description language’ (WDL)是一个专门做生信分析流程搭建的语言，可读性和模块化很好，可以表达绝大部分需求，一般流程搭建肯定够用了。下面是一个简单的例子，具体使用方法查看<a href="https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md" target="_blank" rel="noopener">官方文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">workflow helloworld&#123;</span><br><span class="line">    call hello&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">task hello&#123;</span><br><span class="line">    String name&#x3D;&quot;brother&quot;</span><br><span class="line">    command&#123;</span><br><span class="line">        echo &quot;hello world&quot; $&#123;name&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Cromwell"><a href="#Cromwell" class="headerlink" title="Cromwell"></a>Cromwell</h3><p>Cromwell是wdl的解释和执行工具，把wdl转化成 ‘Abstract Syntax Tree’ (AST) ，然后将语法树中的元素翻译组成shell script存储在工作目录下，并执行。配置可以控制执行时的参数，比如本地/集群/云环境下的执行代码。下面是一个简单的例子，具体使用方式查看<a href="https://cromwell.readthedocs.io/en/develop/tutorials/FiveMinuteIntro/" target="_blank" rel="noopener">官方文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar cromwell.jar run hellowworld.wdl</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上面4种生信解决方案，在功能和高度层层递进，从最简单计算的实现到整个业务流程系统。不同的任务需要灵活使用不同方案解决，才可以专注解决主要问题，提高效率。后面两篇会简单讲<strong>wdl+cromwell</strong>这个framwork的特点和实现原理。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://academic.oup.com/bib/article/18/3/530/2562749" target="_blank" rel="noopener">https://academic.oup.com/bib/article/18/3/530/2562749</a></p>
-<p><a href="https://bcbio-nextgen.readthedocs.io/en/latest/contents/introduction.html" target="_blank" rel="noopener">https://bcbio-nextgen.readthedocs.io/en/latest/contents/introduction.html</a> </p>
-<p><a href="https://github.com/openwdl/wdl/blob/master/versions/development/SPEC.md" target="_blank" rel="noopener">https://github.com/openwdl/wdl/blob/master/versions/development/SPEC.md</a> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
+          <p>生物信息通过综合利用生物学，计算机科学和信息技术而揭示大量而复杂的生物数据所赋有的生物学奥秘，不同的生物数据分析需求对应不同的解决方案。找对应的工具可以事半功倍，找不到的话会浪费很多时间在重复造轮子上，而这里会给一个大概的方向。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/04/workflow_1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ch">
-    <link itemprop="mainEntityOfPage" href="http://zhujiaqi2014.github.io/2020/02/04/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="juhuaguai">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bioinfo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/04/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-04 12:29:03" itemprop="dateCreated datePublished" datetime="2020-02-04T12:29:03+08:00">2020-02-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
       
     </div>
 
@@ -537,10 +416,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -551,16 +430,15 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">juhuaguai</p>
+  <p class="site-author-name" itemprop="name">菊花怪</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+          <a href="/archives">
           <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -589,12 +467,12 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">juhuaguai</span>
+  <span class="author" itemprop="copyrightHolder">菊花怪</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
   </div>
 
         

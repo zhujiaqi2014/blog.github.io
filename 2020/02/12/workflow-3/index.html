@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://zhujiaqi2014.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="WDL+Cromwell一个负责生信流程的描述，一个负责执行。其实有很多特性是隐藏在了Cromwell中的，这样才能让使用者在写WDL的时候更专注生信分析，而不是背后的任务调度和计算。这里简单总结一下Cromwell中的特性和实现原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生物信息流程3-Cromwell">
+<meta property="og:url" content="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/index.html">
+<meta property="og:site_name" content="bioinfo">
+<meta property="og:description" content="WDL+Cromwell一个负责生信流程的描述，一个负责执行。其实有很多特性是隐藏在了Cromwell中的，这样才能让使用者在写WDL的时候更专注生信分析，而不是背后的任务调度和计算。这里简单总结一下Cromwell中的特性和实现原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/dimuaqc83ymt.png">
+<meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/forkjoin_graph.svg">
+<meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/wdlmap.svg">
+<meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/ast.png">
+<meta property="article:published_time" content="2020-02-12T02:40:50.000Z">
+<meta property="article:modified_time" content="2020-02-12T10:59:38.667Z">
+<meta property="article:author" content="菊花怪">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/dimuaqc83ymt.png">
+
+<link rel="canonical" href="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>生物信息流程3-Cromwell | bioinfo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bioinfo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhujiaqi2014.github.io/2020/02/12/workflow-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="菊花怪">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bioinfo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          生物信息流程3-Cromwell
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-12 10:40:50 / 修改时间：18:59:38" itemprop="dateCreated datePublished" datetime="2020-02-12T10:40:50+08:00">2020-02-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>WDL+Cromwell一个负责生信流程的描述，一个负责执行。其实有很多特性是隐藏在了Cromwell中的，这样才能让使用者在写WDL的时候更专注生信分析，而不是背后的任务调度和计算。这里简单总结一下Cromwell中的特性和实现原理</p>
+<a id="more"></a>
+
+<h1 id="Cromwell"><a href="#Cromwell" class="headerlink" title="Cromwell"></a>Cromwell</h1><p><strong>Cromwell</strong>和上下游工具的关系如下，输入<strong>WDL</strong>，输出整个流程执行结果，中间的任务调度，中断，重跑机制都是隐藏在内部处理。这么做的好处是把生信分析以外的工作都抽象出来，平台的搭建维护人员需要知道<strong>Cromwell运作细节</strong>，而WDL使用者则<strong>只需要关注生信分析</strong>。</p>
+<img src="/2020/02/12/workflow-3/dimuaqc83ymt.png" class="" title="dimuaqc83ymt">
+
+
+
+<h1 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h1><p>Cromwell的执行模式分为Run Mode和Server Mode，</p>
+<ul>
+<li><strong>Run Mode</strong>：一行简单的代码就可以行，适合简单独立的分析，并不推荐</li>
+<li><strong>Server Mode</strong>：API控制，扩展较好，引入一些<strong>特性</strong>，适合生产环境</li>
+</ul>
+<p>Server Mode的使用首先需要在系统里起一个服务，这个服务可以接收REST风格的API控制，执行任务的增删改查等，WDL用户在使用时并不用关心背后的计算端细节</p>
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><p><strong>Cromwell</strong>为了更有效的处理任务，有一些<strong>特性</strong>，后面从这些特性和实现原理来介绍Cromwell</p>
+<ul>
+<li><strong>依赖关系</strong>：依赖关系是一个生信流程的关键，任务间依赖关系是流程自动执行时并行/串行的依据，WDL中单个<code>task</code>或是<code>workflow</code>都可以互相依赖，多种层次的结构可以使流程清晰表达，这样WDL同时可以合理的支持简单和复杂任务</li>
+<li><strong>配置</strong>：可以灵活配置计算端的使用参数，结合WDL的<code>task</code>中的<code>runtime</code>属性可以使用<strong>Local，SGE，PBS，BCS，Spark</strong>等各种计算平台</li>
+<li><strong>中断/重跑</strong>：一个生信流程可能会运行几小时到几天，在中间如果有网络/程序问题导致停止或是需要修改参数，中断/重跑机制直接在上次停止的地方重新开始流程，节约很多时间。</li>
+</ul>
+<h2 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h2><p>我们已经知道<strong>WDL</strong>分别用<code>workflow</code>和<code>task</code>来描述流程和单个任务，而<strong>Cromwell</strong>作为具体执行工具在内部定义了一个 Workflow Object Model (WOM)，<code>WOM</code>是一个有向无环图，存储从WDL转换过来的工作流的输入，输出，调用，以及他们之间的依赖关系。</p>
+<img src="/2020/02/12/workflow-3/forkjoin_graph.svg" class="" title="forkjoin_graph">
+
+<p>从WDL转换生成<code>WOM</code>的过程其实就是WDL语言的编译，大概包含几个步骤。下面是3种不同时期的WDL转换到WOM的过程，，其实简单说就是WDL -&gt; AST -&gt; WOM</p>
+<img src="/2020/02/12/workflow-3/wdlmap.svg" class="" title="wdlmap">
+
+<ol>
+<li><p><strong>Lexing</strong> ：把原始WDL字符转换成一串<code>tokens</code>，<code>tokens</code>就是编译过程中基本组成单元 ，数字/字符串/符号等</p>
+</li>
+<li><p><strong>Parsing</strong>：把一串<code>tokens</code>变成 abstract syntax tree (AST) ，<code>AST</code>就是编译的中间数据，可以帮助后面用递归处理各种不同优先级的任务块。上面两个步骤是用<strong>Hermers Parser</strong>这个工具完成的，定义好了语法就能自动把特定语言转换成<code>AST</code></p>
+<img src="/2020/02/12/workflow-3/ast.png" class="" title="ast">
+</li>
+<li><p><strong>Transliteration</strong>：把上一步生成的<code>AST</code>转换成scala对象，方便后面使用</p>
+</li>
+<li><p><strong>Import Resolution</strong>：用递归的方式把上一步的scala对象放进WOM里面</p>
+</li>
+<li><p><strong>Linking</strong>：从输入的json文件和WOM里面找到所有对象输入输出</p>
+</li>
+<li><p><strong>WOM Building</strong>：用上面两步的信息构建WOM对象</p>
+</li>
+<li><p><strong>Input Validation</strong>：测试是不是所有WOM输入都正确</p>
+</li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>从上面我们知道了<strong>Cromwell</strong>在计算端可以使用<strong>Local，SGE，BCS</strong>等各种方式，那么Cromwell是如何使用这些计算后端的呢？下面就是一个SGE的<strong>submit</strong>例子，这个配置文件在启动Server Mode的时候加入。在API提交并通过WDL生成WOM的时候Cromwell会替换掉下面的<strong>变量</strong>然后生成提交脚本</p>
+<ul>
+<li><code>${script}</code>：这个变量就是WDL的task中<code>command</code>中翻译出来的命令行</li>
+<li><code>${cwd}</code>：是<code>task</code>执行的路径，根据WDL中的任务结构会有一个<strong>相对路径</strong>加上<strong>工作路径</strong>来的</li>
+<li><code>${queue}</code>：是SGE的执行队列，这个可以从task的<code>runtime</code>的属性中得到**</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">backend &#123;</span><br><span class="line">  providers &#123;</span><br><span class="line">    SGE &#123;</span><br><span class="line">      config &#123;</span><br><span class="line">        # ... other configuration</span><br><span class="line">        submit &#x3D; &quot;&quot;&quot;</span><br><span class="line">        qsub \</span><br><span class="line">            -terse \</span><br><span class="line">            -V \</span><br><span class="line">            -b n \</span><br><span class="line">            -N $&#123;job_name&#125; \</span><br><span class="line">            -wd $&#123;cwd&#125; \</span><br><span class="line">            -q $&#123;queue&#125; \</span><br><span class="line">            $&#123;script&#125;</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样使用配置文件加上简单的<strong>变量替代</strong>就可以灵活生成不同计算端的<strong>执行命令</strong>挺方便的</p>
+<h2 id="中断-重跑"><a href="#中断-重跑" class="headerlink" title="中断/重跑"></a>中断/重跑</h2><p>在生信分析自动执行<strong>中断/重跑</strong>是很必要的，<strong>Cromwell</strong>中实现的原理是使用数据库存储目前的任务状态</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p> <a href="https://github.com/broadinstitute/cromwell/" target="_blank" rel="noopener">https://github.com/broadinstitute/cromwell/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/11/workflow_2/" rel="prev" title="生物信息流程2-WDL">
+      <i class="fa fa-chevron-left"></i> 生物信息流程2-WDL
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cromwell"><span class="nav-number">1.</span> <span class="nav-text">Cromwell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行"><span class="nav-number">2.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特性"><span class="nav-number">3.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖关系"><span class="nav-number">3.1.</span> <span class="nav-text">依赖关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中断-重跑"><span class="nav-number">3.3.</span> <span class="nav-text">中断&#x2F;重跑</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">菊花怪</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">菊花怪</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

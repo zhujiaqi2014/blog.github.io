@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ch">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -21,7 +21,7 @@
   var CONFIG = {
     hostname: new URL('http://zhujiaqi2014.github.io').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.7.1',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -46,13 +46,13 @@
   };
 </script>
 
-  <meta name="description" content="介绍上一部分总结了生信流程的分类和对应解决的问题，后面主要讲一下frameworks里面的WDL+Cromwell方法。这一套方法是Broad  Institute在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌&#x2F;亚马逊&#x2F;微软&#x2F;阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwell跑了4">
+  <meta name="description" content="上一部分总结了几类生信解决方案，从细节到宏观对应解决的问题。后面主要WDL+Cromwell方法为主，总结生信框架的分类和优缺点。这一套方法是Broad  Institute在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌&#x2F;亚马逊&#x2F;微软&#x2F;阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生物信息流程2-WDL">
 <meta property="og:url" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/index.html">
 <meta property="og:site_name" content="bioinfo">
-<meta property="og:description" content="介绍上一部分总结了生信流程的分类和对应解决的问题，后面主要讲一下frameworks里面的WDL+Cromwell方法。这一套方法是Broad  Institute在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌&#x2F;亚马逊&#x2F;微软&#x2F;阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwell跑了4">
-<meta property="og:locale" content="ch">
+<meta property="og:description" content="上一部分总结了几类生信解决方案，从细节到宏观对应解决的问题。后面主要WDL+Cromwell方法为主，总结生信框架的分类和优缺点。这一套方法是Broad  Institute在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌&#x2F;亚马逊&#x2F;微软&#x2F;阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwe">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/cromwell-1.png">
 <meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/framworks-1.png">
 <meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/varcallgalaxy3.jpg">
@@ -60,8 +60,8 @@
 <meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/wdl-2.png">
 <meta property="og:image" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/bug-1.png">
 <meta property="article:published_time" content="2020-02-11T09:48:57.000Z">
-<meta property="article:modified_time" content="2020-02-11T10:18:10.495Z">
-<meta property="article:author" content="juhuaguai">
+<meta property="article:modified_time" content="2020-02-12T02:25:11.784Z">
+<meta property="article:author" content="菊花怪">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/cromwell-1.png">
 
@@ -128,7 +128,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -140,14 +140,14 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-主页">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>主页</a>
 
   </li>
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-归档">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
   </ul>
@@ -175,12 +175,12 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ch">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://zhujiaqi2014.github.io/2020/02/11/workflow_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="juhuaguai">
+      <meta itemprop="name" content="菊花怪">
       <meta itemprop="description" content="">
     </span>
 
@@ -197,11 +197,17 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2020-02-11 17:48:57 / Modified: 18:18:10" itemprop="dateCreated datePublished" datetime="2020-02-11T17:48:57+08:00">2020-02-11</time>
+              <time title="创建时间：2020-02-11 17:48:57" itemprop="dateCreated datePublished" datetime="2020-02-11T17:48:57+08:00">2020-02-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-12 10:25:11" itemprop="dateModified" datetime="2020-02-12T10:25:11+08:00">2020-02-12</time>
+              </span>
 
           
 
@@ -214,8 +220,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>上一部分总结了生信流程的分类和对应解决的问题，后面主要讲一下frameworks里面的<strong>WDL+Cromwell</strong>方法。这一套方法是<strong>Broad  Institute</strong>在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌/亚马逊/微软/阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwell跑了47.5million以上的任务，各种奇葩情况应该大部分遇到过并且可以解决。</p>
-<p><strong>WDL</strong>和<strong>Cromwell</strong>是一起使用的工具，<strong>WDL</strong>是易读写的流程编写语言，适合方法开发人员和所有生物医学科学家。<strong>Cromwell</strong>是WDL的执行引擎有如下特征。<strong>这部分主要讲WDL，Cromwell只简单介绍一下</strong></p>
+        <p>上一部分总结了几类生信解决方案，从细节到宏观对应解决的问题。后面主要<strong>WDL+Cromwell</strong>方法为主，总结生信框架的分类和优缺点。这一套方法是<strong>Broad  Institute</strong>在2012年开始内部使用（GATK dev team，CGA team，Picard team），后来用的人越开越多就开源了。谷歌/亚马逊/微软/阿里云上都有专门的支持和文档。到目前Broad Institue使用cromwell跑了47.5million以上的任务，各种奇葩情况应该大部分遇到过并且可以解决。</p>
+<a id="more"></a>
+
+<h1 id="WDL-Cromwell"><a href="#WDL-Cromwell" class="headerlink" title="WDL+Cromwell"></a>WDL+Cromwell</h1><p><strong>WDL</strong>和<strong>Cromwell</strong>是一起使用的工具，<strong>WDL</strong>是易读写的流程编写语言，适合方法开发人员和所有生物医学科学家。<strong>Cromwell</strong>是WDL的执行引擎有如下特征。<strong>这部分主要讲WDL，Cromwell只简单介绍一下</strong></p>
 <ul>
 <li><p>可以在多个平台上运行（HPC或Cloud）</p>
 </li>
@@ -226,7 +234,9 @@
 </ul>
 <img src="/2020/02/11/workflow_2/cromwell-1.png" class="" title="cromwell-1">
 
-<h3 id="Frameworks分类"><a href="#Frameworks分类" class="headerlink" title="Frameworks分类"></a>Frameworks分类</h3><p>作为一种流程表达的语言，要弄清<strong>WDL</strong>的特点需要和其他<strong>类似语言</strong>对比，下面是几种分类方法</p>
+
+
+<h1 id="Frameworks分类"><a href="#Frameworks分类" class="headerlink" title="Frameworks分类"></a>Frameworks分类</h1><p>作为一种流程表达的语言，要弄清<strong>WDL</strong>的特点需要和其他<strong>类似语言</strong>对比，下面是几种分类方法</p>
 <ul>
 <li><p>显示/隐式语法</p>
 </li>
@@ -239,7 +249,7 @@
 
 
 
-<h3 id="显示-隐式语法"><a href="#显示-隐式语法" class="headerlink" title="显示/隐式语法"></a>显示/隐式语法</h3><p><strong>隐式语法</strong>是<strong>Make</strong>引入的，使用通配符的形式以减少make脚本的冗余，可以通过一个<code>Implicit Rule</code>表达相似操作。下面是流程语言<strong>Snakemake</strong>对隐式语法的应用，在文件Snakefile中是一个<code>Implicit Rule</code>。在执行snakemake命令的时候为了输出<code>mapped_reads/A.bam</code>和<code>mapped_reads/B.bam</code>，程序会自动根据<code>Implicit Rule</code>去对应路径下找<code>data/samples/A.fastq</code>和<code>data/samples/B.fastq</code>然后执行shell中的代码。整个流程多个任务的依赖关系由这些文件的后缀推出来</p>
+<h2 id="显示-隐式语法"><a href="#显示-隐式语法" class="headerlink" title="显示/隐式语法"></a>显示/隐式语法</h2><p><strong>隐式语法</strong>是<strong>Make</strong>引入的，使用通配符的形式以减少make脚本的冗余，可以通过一个<code>Implicit Rule</code>表达相似操作。下面是流程语言<strong>Snakemake</strong>对隐式语法的应用，在文件Snakefile中是一个<code>Implicit Rule</code>。在执行snakemake命令的时候为了输出<code>mapped_reads/A.bam</code>和<code>mapped_reads/B.bam</code>，程序会自动根据<code>Implicit Rule</code>去对应路径下找<code>data/samples/A.fastq</code>和<code>data/samples/B.fastq</code>然后执行shell中的代码。整个流程多个任务的依赖关系由这些文件的后缀推出来</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Snakefile</span><br><span class="line"></span><br><span class="line">rule bwa_map:</span><br><span class="line">    input:</span><br><span class="line">        &quot;data&#x2F;genome.fa&quot;,</span><br><span class="line">        &quot;data&#x2F;samples&#x2F;&#123;sample&#125;.fastq&quot;</span><br><span class="line">    output:</span><br><span class="line">        &quot;mapped_reads&#x2F;&#123;sample&#125;.bam&quot;</span><br><span class="line">    shell:</span><br><span class="line">        &quot;bwa mem &#123;input&#125; | samtools view -Sb - &gt; &#123;output&#125;&quot;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snakemake -np mapped_reads&#x2F;&#123;A,B&#125;.bam</span><br></pre></td></tr></table></figure>
@@ -248,19 +258,19 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Ruffus</span><br><span class="line"></span><br><span class="line">@transform(input_fqs, suffix(fq_suffix), sam_suffix)</span><br><span class="line">@log_and_run</span><br><span class="line">def align_with_bwa(input_fqs, sam_file):</span><br><span class="line">    cmd &#x3D; &#39;bwa mem &#123;&#125; &#123;&#125; &gt; &#123;&#125;&#39;.format(ref_genome, input_fqs, sam_file)</span><br><span class="line">    return cmd</span><br><span class="line"></span><br><span class="line">@follows(align_with_bwa)</span><br></pre></td></tr></table></figure>
 
 <p><strong>WDL</strong>是一种显式语法，在后面的介绍中可以看出。这样的好处是从文件名中解放用户的精力，使其专注在流程上。</p>
-<h3 id="class-config-dsl范式"><a href="#class-config-dsl范式" class="headerlink" title="class/config/dsl范式"></a>class/config/dsl范式</h3><p>这种<strong>class-based</strong>的框架往往和已有语言紧密结合，比如GATK team在2011年使用WDL之前用的流程语言<strong>Queue</strong>就是一个建立在GATK和scala上的流程框架，因此有他的所有特性。新一点的Frameworks比如<strong>Toil</strong>是建立在python上的，写出来的流程同样有python所有特性。相比于dsl只能完成规定类型任务，class-based框架因为继承了编程语言的特性，操作粒度更细，可以完成一些特殊的操作。</p>
+<h2 id="class-config-dsl范式"><a href="#class-config-dsl范式" class="headerlink" title="class/config/dsl范式"></a>class/config/dsl范式</h2><p>这种<strong>class-based</strong>的框架往往和已有语言紧密结合，比如GATK team在2011年使用WDL之前用的流程语言<strong>Queue</strong>就是一个建立在GATK和scala上的流程框架，因此有他的所有特性。新一点的Frameworks比如<strong>Toil</strong>是建立在python上的，写出来的流程同样有python所有特性。相比于dsl只能完成规定类型任务，class-based框架因为继承了编程语言的特性，操作粒度更细，可以完成一些特殊的操作。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># toil_example.py</span><br><span class="line"></span><br><span class="line">from toil.common import Toil</span><br><span class="line">from toil.job import Job</span><br><span class="line"></span><br><span class="line">def helloWorld(message, memory&#x3D;&quot;1G&quot;, cores&#x3D;1, disk&#x3D;&quot;1G&quot;):</span><br><span class="line">    return &quot;Hello, world!, here&#39;s a message: %s&quot; % message</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &quot;__main__&quot;:</span><br><span class="line">    parser &#x3D; Job.Runner.getDefaultArgumentParser()</span><br><span class="line">    options &#x3D; parser.parse_args()</span><br><span class="line">    options.clean &#x3D; &quot;always&quot;</span><br><span class="line">    with Toil(options) as toil:</span><br><span class="line">        output &#x3D; toil.start(Job.wrapFn(helloWorld, &quot;You did it!&quot;))</span><br><span class="line">    print(output)</span><br></pre></td></tr></table></figure>
 
 <p><strong>config-based</strong>框架的思想是使用<strong>配置文件描述任务</strong>，每个任务有一个config文件来描述任务中所有步骤的所有相关参数/输入/输出/程序。这种方式优势是重复性好，因为每个任务对应一个config文件包含了运行中所有信息。下面的<strong>Pegasus</strong>是一个开发来用于物理研究的框架，使用id来表达步骤间的依赖关系，任务所有信息全部存储在config文件里面</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># pegasus_example.xml</span><br><span class="line"></span><br><span class="line">&lt;executable name&#x3D;&quot;align_ with_ bwa&quot; arch&#x3D;&quot;x86_ _64&quot; installed&#x3D;&quot;true&quot;&gt;</span><br><span class="line">    &lt;pfn url&#x3D;&quot;file:&#x2F;&#x2F;path to executables&#x2F;bwa&quot; site&#x3D;&quot;local&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;executable&gt;</span><br><span class="line">&lt;job id&#x3D;&quot;ID0000001&quot; name&#x3D;&quot;align_ with_ _bwa&quot;&gt;</span><br><span class="line">    &lt;argument&gt;mem -t 12 -M &lt;file name&#x3D;&quot;GRCh38.fa&quot;&#x2F;&gt; &lt;file name&#x3D;&quot;my_ sample_ 1.fq&quot;&#x2F;&gt; &lt;file name&#x3D;&quot;my_ sample_ 2. fq&quot;&#x2F;&gt;&lt;&#x2F;argument&gt;</span><br><span class="line">    &lt;profile namespace&#x3D;&quot;pegasus&quot; key&#x3D;&quot;label&quot;&gt;bwa&lt;&#x2F;profile&gt;</span><br><span class="line">    &lt;profile namespace&#x3D;&quot;condor&quot; key&#x3D;&quot; request_ cpus&quot;&gt;16&lt;&#x2F;profile&gt;</span><br><span class="line">    &lt;stdout name&#x3D;&quot;my_ sample. sam&quot; link&#x3D; &quot;output&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;GRCh38. fa. fai&quot; link&#x3D;&quot; input&quot; &#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;GRCh38. fa. bwt&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;GRCh38. fa&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;my_ sample_ 1. fq&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">    &lt;uses name&#x3D;&quot;my_ sample_ 2. fq&quot; link&#x3D;&quot; input&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;job&gt;</span><br><span class="line">&lt;child id&#x3D;&quot;I0000002&quot; ref&#x3D;&quot;my_ _sample_ sam2bam&quot;&gt;</span><br><span class="line">    &lt;parent ref&#x3D;&quot;ID0000001&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;child&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>‘domain-specific language’(DSL)</strong>框架是专门设计来做生信分析的，会自定义一些规则来帮助使用人员描述流程。刚才介绍的<strong>snakemake</strong>和我们今天讨论的<strong>WDL</strong>就是两种比较流行的DSL，好处是可以框架开发人员随需求定义特定的语言，引入特性，使用人员不用像<strong>class-based</strong>的框架一样学习绑定的复杂语言，也不用像<strong>config-based</strong>的框架一样每个任务都配置一大堆东西。</p>
-<h3 id="命令行-图形界面"><a href="#命令行-图形界面" class="headerlink" title="命令行/图形界面"></a>命令行/图形界面</h3><p>这两个区别就不用多说了，没有生信背景的研究者一般使用商业化的图形界面工具。如果有生信背景的还是使用命令行类型的更方便。下面<strong>Galaxy</strong>使用的图形界面，而<strong>WDL</strong>是属于命令行模式的。后面简单介绍一下WDL的基本结构</p>
+<h2 id="命令行-图形界面"><a href="#命令行-图形界面" class="headerlink" title="命令行/图形界面"></a>命令行/图形界面</h2><p>这两个区别就不用多说了，没有生信背景的研究者一般使用商业化的图形界面工具。如果有生信背景的还是使用命令行类型的更方便。下面<strong>Galaxy</strong>使用的图形界面，而<strong>WDL</strong>是属于命令行模式的。后面简单介绍一下WDL的基本结构</p>
 <img src="/2020/02/11/workflow_2/varcallgalaxy3.jpg" class="" title="varcallgalaxy3">
 
 
 
-<h3 id="WDL的基本结构"><a href="#WDL的基本结构" class="headerlink" title="WDL的基本结构"></a>WDL的基本结构</h3><p><strong>WDL</strong>由<code>task</code>和<code>workflow</code>组成，<code>task</code>是任务基本单元，包括4个部分，分别为</p>
+<h1 id="WDL的基本结构"><a href="#WDL的基本结构" class="headerlink" title="WDL的基本结构"></a>WDL的基本结构</h1><h2 id="Tasks"><a href="#Tasks" class="headerlink" title="Tasks"></a>Tasks</h2><p><strong>WDL</strong>由<code>task</code>和<code>workflow</code>组成，<code>task</code>是任务基本单元，包括4个部分，分别为</p>
 <ul>
 <li><p>input：就是任务的输入，可以是文件/字符串/数组/哈希/自定义格式</p>
 </li>
@@ -275,17 +285,17 @@
 
 
 
-<h3 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h3><p><code>Workflow</code>是分析流程，整个流程可以由多个<code>task</code>或是多个<code>SubWorkflow</code>组成，并行/串行都有特定方法表示。<strong>显式</strong>的参数传递可以被自动识别出任务间的依赖关系。<strong>DSL-based</strong>的写法也挺优雅，没有多余的东西，可读性比其他方法好</p>
+<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p><code>Workflow</code>是分析流程，整个流程可以由多个<code>task</code>或是多个<code>SubWorkflow</code>组成，并行/串行都有特定方法表示。<strong>显式</strong>的参数传递可以被自动识别出任务间的依赖关系。<strong>DSL-based</strong>的写法也挺优雅，没有多余的东西，可读性比其他方法好</p>
 <img src="/2020/02/11/workflow_2/wdl-2.png" class="" title="wdl-2">
 
 
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这里虽然主要介绍<strong>WDL</strong>，但是也对各种框架语言做了个分类，在使用的时候需要根据任务需要灵活使用不同方案解决，才可以专注解决主要问题，提高效率。不过WDL作为一个<strong>开发者靠谱，使用次数多，相关支持多</strong>的框架语言，用来解决大部分常规问题应该是很轻松的。相比于其他难用的框架语言，节约下来的时间和精力可以专注在业务数据的分析上，而不是一直修改<strong>bug</strong></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这里虽然主要介绍<strong>WDL</strong>，但是也对各种框架语言做了个分类，在使用的时候需要根据任务需要灵活使用不同方案解决，才可以专注解决主要问题，提高效率。不过WDL作为一个<strong>开发者靠谱，使用次数多，相关支持多</strong>的框架语言，用来解决大部分常规问题应该是很轻松的。相比于其他难用的框架语言，节约下来的时间和精力可以专注在业务数据的分析上，而不是一直修改<strong>bug</strong></p>
 <img src="/2020/02/11/workflow_2/bug-1.png" class="" title="bug-1">
 
 
 
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.ncbi.nlm.nih.gov/pubmed/27013646" target="_blank" rel="noopener">A review of bioinformatic pipeline frameworks</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.ncbi.nlm.nih.gov/pubmed/27013646" target="_blank" rel="noopener">A review of bioinformatic pipeline frameworks</a></p>
 <p><a href="https://www.gnu.org/software/make/manual/make.html#Using-Implicit" target="_blank" rel="noopener">Make Document</a></p>
 <p><a href="https://www.broadinstitute.org/files/shared/mpg/nextgen2011/nextgen2011_shakir.pdf" target="_blank" rel="noopener">GATK-Queue</a></p>
 <p><a href="https://toil.readthedocs.io/en/latest/" target="_blank" rel="noopener">Toil Document</a></p>
@@ -308,7 +318,10 @@
     <a href="/2020/02/04/workflow_1/" rel="prev" title="生物信息流程1-背景介绍">
       <i class="fa fa-chevron-left"></i> 生物信息流程1-背景介绍
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/12/workflow-3/" rel="next" title="生物信息流程3-Cromwell">
+      生物信息流程3-Cromwell <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -359,31 +372,30 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Frameworks分类"><span class="nav-number">2.</span> <span class="nav-text">Frameworks分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示-隐式语法"><span class="nav-number">3.</span> <span class="nav-text">显示&#x2F;隐式语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class-config-dsl范式"><span class="nav-number">4.</span> <span class="nav-text">class&#x2F;config&#x2F;dsl范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行-图形界面"><span class="nav-number">5.</span> <span class="nav-text">命令行&#x2F;图形界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WDL的基本结构"><span class="nav-number">6.</span> <span class="nav-text">WDL的基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Workflow"><span class="nav-number">7.</span> <span class="nav-text">Workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WDL-Cromwell"><span class="nav-number">1.</span> <span class="nav-text">WDL+Cromwell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Frameworks分类"><span class="nav-number">2.</span> <span class="nav-text">Frameworks分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示-隐式语法"><span class="nav-number">2.1.</span> <span class="nav-text">显示&#x2F;隐式语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class-config-dsl范式"><span class="nav-number">2.2.</span> <span class="nav-text">class&#x2F;config&#x2F;dsl范式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行-图形界面"><span class="nav-number">2.3.</span> <span class="nav-text">命令行&#x2F;图形界面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WDL的基本结构"><span class="nav-number">3.</span> <span class="nav-text">WDL的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tasks"><span class="nav-number">3.1.</span> <span class="nav-text">Tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Workflow"><span class="nav-number">3.2.</span> <span class="nav-text">Workflow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">juhuaguai</p>
+  <p class="site-author-name" itemprop="name">菊花怪</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+          <a href="/archives">
           <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -412,12 +424,12 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">juhuaguai</span>
+  <span class="author" itemprop="copyrightHolder">菊花怪</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
   </div>
 
         
